@@ -1,47 +1,688 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="220" height="100">
-        <defs>
-          <!-- Gradient fills for depth -->
-          <linearGradient id="grad-back" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#1a3d5c"/>
-            <stop offset="100%" stop-color="#122733"/>
-          </linearGradient>
-          <linearGradient id="grad-middle" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#2c557a"/>
-            <stop offset="100%" stop-color="#1f3f5d"/>
-          </linearGradient>
-          <linearGradient id="grad-front" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#3d6a94"/>
-            <stop offset="100%" stop-color="#2b4e6b"/>
-          </linearGradient>
-          <!-- Subtle drop shadow for text -->
-          <filter id="text-shadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.4"/>
-          </filter>
-        </defs>
-      
-        <!-- Mountain Ranges -->
-        <g>
-          <path d="M0,100 L60,25 L120,80 L180,5 L240,50 L300,10 L360,60 L420,35 L500,95 L500,130 L0,130 Z" fill="url(#grad-back)"/>
-          <path d="M0,110 L40,60 L80,95 L130,40 L170,70 L210,30 L260,65 L310,25 L360,70 L410,35 L460,60 L500,90 L500,130 L0,130 Z" fill="url(#grad-middle)"/>
-          <path d="M0,120 L50,85 L100,105 L150,75 L200,100 L250,70 L300,95 L350,80 L400,105 L450,80 L500,110 L500,130 L0,130 Z" fill="url(#grad-front)"/>
-        </g>
-      
-        <!-- Reflection Highlights -->
-        <g stroke="#57b8ff" stroke-width="2" fill="none">
-          <path d="M300,10 L320,30 L330,25 L345,40 L360,60"/>
-          <path d="M180,5 L200,25 L210,20 L225,35"/>
-        </g>
-      
-        <!-- Company Name -->
-        <text x="250" y="175" font-family="Montserrat, sans-serif" font-size="38" font-weight="700" text-anchor="middle" fill="#ffffff" filter="url(#text-shadow)">
-          <tspan x="250" dy="0">Belmont</tspan>
-          <tspan x="250" dy="1.2em" fill="#57b8ff">Advantage</tspan>
-        </text>
-      </svg>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belmont Advantage - Strategic Employee Benefits Consulting</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #1a3d5c;
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #57b8ff;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #57b8ff;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 61, 92, 0.8), rgba(26, 61, 92, 0.8)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #57b8ff;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #3d9eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #fff;
+        }
+        
+        .btn-outline:hover {
+            background-color: #fff;
+            color: #1a3d5c;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1a3d5c;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: #1a3d5c;
+            margin-bottom: 20px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            height: 150px;
+            background-color: #57b8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            color: #fff;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1a3d5c;
+        }
+        
+        /* Approach Section */
+        .approach {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .approach-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            background-color: #57b8ff;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1a3d5c;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 50px auto 0;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial {
+            text-align: center;
+        }
+        
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: #1a3d5c;
+        }
+        
+        .testimonial-position {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(rgba(26, 61, 92, 0.9), rgba(26, 61, 92, 0.9)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a3d5c;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #57b8ff;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #57b8ff;
+        }
+        
+        .footer-column p {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-bottom p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="220" height="88">
+                    <!-- Mountain Range -->
+                    <g>
+                        <!-- Larger Mountains in Back -->
+                        <path d="M0,100 L60,25 L120,80 L180,5 L240,50 L300,10 L360,60 L420,35 L500,95 L500,130 L0,130 Z" fill="#1a3d5c" />
+                        
+                        <!-- Medium Mountains in Middle -->
+                        <path d="M0,110 L40,60 L80,95 L130,40 L170,70 L210,30 L260,65 L310,25 L360,70 L410,35 L460,60 L500,90 L500,130 L0,130 Z" fill="#2c557a" />
+                        
+                        <!-- Smaller Mountains in Front -->
+                        <path d="M0,120 L50,85 L100,105 L150,75 L200,100 L250,70 L300,95 L350,80 L400,105 L450,80 L500,110 L500,130 L0,130 Z" fill="#3d6a94" />
+                    </g>
+                    
+                    <!-- Reflection Highlight on Mountains -->
+                    <path d="M300,10 L320,30 L330,25 L345,40 L360,60" stroke="#57b8ff" stroke-width="2" fill="none" />
+                    <path d="M180,5 L200,25 L210,20 L225,35" stroke="#57b8ff" stroke-width="2" fill="none" />
+                    
+                    <!-- Text Elements - Centered -->
+                    <g>
+                        <!-- Company Name as Single Text Element -->
+                        <text x="250" y="170" font-family="Montserrat, sans-serif" font-size="38" font-weight="700" fill="#ffffff" text-anchor="middle">
+                            <tspan fill="#ffffff">Belmont</tspan>
+                            <tspan fill="#57b8ff">Advantage</tspan>
+                        </text>
+                    </g>
+                </svg>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#approach">Our Approach</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-      
-  </body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Comprehensive Benefits Solutions</h1>
+            <p>Protect your workforce with customized insurance and benefits administration that enhance employee satisfaction while optimizing costs. Partner with Belmont Advantage for expertise that makes a difference.</p>
+            <div>
+                <a href="#contact" class="btn">Schedule a Consultation</a>
+                <a href="#services" class="btn btn-outline">Explore Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Belmont Advantage</h2>
+                <p>Your trusted partner in comprehensive employee benefits solutions</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Who We Are</h3>
+                    <p>At Belmont Advantage, we understand that a well-designed employee benefits program provides financial protection while attracting and retaining top talent.</p>
+                    <p>Founded by industry veterans with extensive experience in benefits consulting, our firm offers personalized, innovative solutions tailored to your specific workforce needs and organizational culture.</p>
+                    <p>We serve as an extension of your HR team, providing expertise, streamlined administration, and ongoing support to help navigate the complex world of employee benefits with confidence.</p>
+                    <h3>Our Mission</h3>
+                    <p>To provide comprehensive benefits solutions that protect employees and their families while giving employers the tools to effectively manage their benefits programs and contain costs.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="Belmont Advantage Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive benefits solutions for your workforce</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Accident Insurance</h3>
+                        <p>Protect your employees with coverage that helps manage unexpected costs after an accident. Our plans provide benefits for medical expenses, hospital stays, and recovery, giving financial peace of mind when accidents happen.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Hospital Indemnity Insurance</h3>
+                        <p>Provide financial support during hospital stays with plans that help cover costs major medical might miss. These benefits can help employees pay for deductibles, copays, and other out-of-pocket expenses associated with hospitalization.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Critical Illness Coverage</h3>
+                        <p>Offer protection against the financial impact of serious illnesses with lump-sum benefits that employees can use for treatment costs, everyday expenses, or however they need during challenging times.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Life Insurance Solutions</h3>
+                        <p>Provide financial security for employees' families with customizable life insurance options. We offer term and whole life plans that can be tailored to individual needs, giving your employees peace of mind about their loved ones' future.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Dental & Vision Benefits</h3>
+                        <p>Support employee wellness with comprehensive dental and vision plans that help cover routine care and more complex procedures. These popular benefits enhance your overall package while promoting preventive care.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Flexible Spending Accounts</h3>
+                        <p>Maximize tax advantages for both employers and employees with pre-tax accounts for eligible medical, dental, vision, and dependent care expenses. Our FSA administration simplifies the process while ensuring compliance.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Health Savings Accounts</h3>
+                        <p>Help employees save for healthcare expenses with tax-advantaged HSAs that work alongside qualified high-deductible health plans. Our HSA solutions offer easy access, investment options, and comprehensive education materials.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>COBRA Administration</h3>
+                        <p>Ensure compliance with complex COBRA regulations through our streamlined administration services. We handle everything from eligibility tracking and notifications to premium collection and documentation management.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Health Reimbursement Arrangements</h3>
+                        <p>Design flexible employer-funded plans that reimburse employees for qualified medical expenses. Our HRA solutions help control healthcare costs while providing additional coverage for your workforce.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section id="approach" class="approach">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Approach</h2>
+                <p>A strategic methodology for benefits program success</p>
+            </div>
+            <div class="approach-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Assessment</h3>
+                    <p>We analyze your current benefits structure, workforce demographics, and organizational goals to identify opportunities for enhancement and cost optimization.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Plan Design</h3>
+                    <p>Our team develops a customized benefits package that balances comprehensive coverage with cost-efficiency, addressing both employer objectives and employee needs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Implementation</h3>
+                    <p>We manage the entire rollout process, from carrier selection and enrollment setup to employee communications and education, ensuring a smooth transition.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Administration</h3>
+                    <p>Our comprehensive TPA services handle day-to-day operations, including claims processing, eligibility management, compliance monitoring, and reporting.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Ongoing Support</h3>
+                    <p>We provide continuous service through our dedicated account team, employee assistance resources, and regular program reviews to ensure optimal performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <p>What our clients say about working with us</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Belmont Advantage transformed our benefits program with voluntary benefits that enhanced our offerings while keeping costs manageable. The innovative FSA and HSA solutions they implemented have been enthusiastically embraced by our employees."
+                    </div>
+                    <div class="testimonial-author">Sarah Johnson</div>
+                    <div class="testimonial-position">HR Director, TechInnovate Inc.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta">
+        <div class="container">
+            <h2>Ready to Enhance Your Benefits Package?</h2>
+            <p>Schedule a complimentary consultation with our expert team to discover how Belmont Advantage can help optimize your employee benefits program.</p>
+            <a href="#" class="btn">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Belmont Advantage</h3>
+                    <p>Comprehensive employee benefits solutions that protect your workforce and strengthen your organization.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#approach">Our Approach</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Corporate Plaza, Belmont, WA 98007</p>
+                    <p><i class="fas fa-phone"></i> (425) 555-1234</p>
+                    <p><i class="fas fa-envelope"></i> info@belmontadvantage.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Belmont Advantage. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
 </html>
